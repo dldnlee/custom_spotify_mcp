@@ -1,5 +1,8 @@
 from mcp_instance import mcp
+import tools.custom.get_song_list
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 # For Testing (Should be deleted)
