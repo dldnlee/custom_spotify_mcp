@@ -1,18 +1,15 @@
-# server.py
-from mcp.server.fastmcp import FastMCP
-
-# Create an MCP server
-mcp = FastMCP("Custom Spotify MCP")
+from mcp_instance import mcp
 
 
-# Add an addition tool
+
+# For Testing (Should be deleted)
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
 
 
-# Add a dynamic greeting resource
+# For Testing (Should be deleted)
 @mcp.resource("greeting://{name}")
 def get_greeting(name: str) -> str:
     """Get a personalized greeting"""
