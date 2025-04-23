@@ -5,6 +5,11 @@ from tools.spotify.create_playlist import create_playlist
 
 # Import add-track tool
 from tools.spotify.add_tracks_to_playlist import add_tracks_to_playlist
+import tools.custom.get_song_list
+from dotenv import load_dotenv
+from tools.spotify.create_playlist import create_playlist
+
+load_dotenv()
 
 # For Testing (Should be deleted)
 @mcp.tool()
