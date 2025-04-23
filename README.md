@@ -26,6 +26,7 @@ uv init
 ```
 
 ### 4. Create Environment Variables
+You can get the required tokens from [Spotify for Developers](https://developer.spotify.com/) 
 ```bash
 SPOTIFY_CLIENT_ID=your-spotify-client-id
 SPOTIFY_CLIENT_SECRET=your-spotify-client-secret
@@ -58,12 +59,12 @@ Ensure you have created a Spotify Developer App and configured:
   - Client ID
 	-	Client Secret
 	-	Redirect URI
-	-	These credentials should be securely added in spotify_auth.py.
-	-	You may need to adjust mcp.yaml to properly configure your tool for the MCP ecosystem.
+	-	These credentials should be securely added in spotify_auth.py.	
 
 ### Useful Links
-	•	Spotify API Documentation
-	•	Model Context Protocol Python SDK
+[Spotify for Developers](https://developer.spotify.com/)
+
+[MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 
 
 
