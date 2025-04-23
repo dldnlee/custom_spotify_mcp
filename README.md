@@ -56,10 +56,10 @@ uv add "requests"
 
 ### Notes
 Ensure you have created a Spotify Developer App and configured:
-  - Client ID
-	-	Client Secret
-	-	Redirect URI
-	-	These credentials should be securely added in spotify_auth.py.	
+- Client ID
+- Client Secret
+- Redirect URI
+- These credentials should be securely added in spotify_auth.py.	
 
 ### Useful Links
 [Spotify for Developers](https://developer.spotify.com/)
