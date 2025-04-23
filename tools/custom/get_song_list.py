@@ -1,9 +1,6 @@
 import requests
 from mcp_instance import mcp
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 @mcp.tool()
 def get_song_list(search_query: str) -> list[str]:
