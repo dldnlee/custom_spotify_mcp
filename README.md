@@ -53,6 +53,17 @@ uv add "mcp[cli]"
 uv add "requests"
 ```
 
+### Notes
+Ensure you have created a Spotify Developer App and configured:
+  - Client ID
+	-	Client Secret
+	-	Redirect URI
+	-	These credentials should be securely added in spotify_auth.py.
+	-	You may need to adjust mcp.yaml to properly configure your tool for the MCP ecosystem.
+
+### Useful Links
+	•	Spotify API Documentation
+	•	Model Context Protocol Python SDK
 
 
 
