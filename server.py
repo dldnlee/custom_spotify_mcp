@@ -3,8 +3,11 @@ from mcp_instance import mcp
 # Import create-playlist tool
 from tools.spotify.create_playlist import create_playlist
 
-# Import add-track tool
+# Import add-tracks tool
 from tools.spotify.add_tracks_to_playlist import add_tracks_to_playlist
+
+# Import search-tracks tool
+from tools.spotify.search_tracks import search_tracks
 
 # For Testing (Should be deleted)
 @mcp.tool()
