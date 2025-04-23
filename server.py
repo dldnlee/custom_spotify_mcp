@@ -4,7 +4,6 @@ from mcp_instance import mcp
 from tools.spotify.create_playlist import create_playlist
 
 
-
 # For Testing (Should be deleted)
 @mcp.tool()
 def add(a: int, b: int) -> int:
