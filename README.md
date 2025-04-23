@@ -1,4 +1,4 @@
-# Emotion Playlist MCP
+# Custom Spotify MCP
 
 This project is a custom MCP server that integrates Spotify to generate playlists based on user emotions.
 
