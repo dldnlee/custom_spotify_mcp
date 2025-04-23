@@ -1,15 +1,12 @@
 from mcp_instance import mcp
+from dotenv import load_dotenv
+load_dotenv()
 
 # Import create-playlist tool
 from tools.spotify.create_playlist import create_playlist
 
 # Import add-tracks tool
 from tools.spotify.add_tracks_to_playlist import add_tracks_to_playlist
-import tools.custom.get_song_list
-from dotenv import load_dotenv
-from tools.spotify.create_playlist import create_playlist
-
-load_dotenv()
 
 # Import search-tracks tool
 from tools.spotify.search_tracks import search_tracks
@@ -18,17 +15,12 @@ from tools.spotify.search_tracks import search_tracks
 from tools.spotify.play_playlist import play_playlist
 
 # Import add-fixed-track tool
-from tools.spotify.add_fixed_track import add_fixed_track
+from tools.custom.add_fixed_track import add_fixed_track
 
-# For Testing (Should be deleted)
-@mcp.tool()
-def add(a: int, b: int) -> int:
-    """Add two numbers"""
-    return a + b
+# Import analyze-emotion tool
+from tools.custom.analyze_emotion import analyze_emotion
+
+# Import search-tracks-online tool
+from tools.custom.search_tracks_online import search_tracks_online
 
 
-# For Testing (Should be deleted)
-@mcp.resource("greeting://{name}")
-def get_greeting(name: str) -> str:
-    """Get a personalized greeting"""
-    return f"Hello, {name}!"
