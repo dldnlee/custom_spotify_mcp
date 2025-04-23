@@ -12,6 +12,9 @@ from tools.spotify.search_tracks import search_tracks
 # Import play-playlist tool
 from tools.spotify.play_playlist import play_playlist
 
+# Import add-fixed-track tool
+from tools.spotify.add_fixed_track import add_fixed_track
+
 # For Testing (Should be deleted)
 @mcp.tool()
 def add(a: int, b: int) -> int:
