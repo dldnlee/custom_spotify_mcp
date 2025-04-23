@@ -1,0 +1,1 @@
+# Create a tool to analyze the user's emotion and return a enchanced prompt for the mcp to use
