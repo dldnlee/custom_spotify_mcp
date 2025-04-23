@@ -1,7 +1,10 @@
 from mcp_instance import mcp
-
-# Import create_playlist tool
+import tools.custom.get_song_list
+from dotenv import load_dotenv
 from tools.spotify.create_playlist import create_playlist
+
+load_dotenv()
+
 
 
 # For Testing (Should be deleted)
