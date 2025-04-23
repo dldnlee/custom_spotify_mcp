@@ -1,1 +1,115 @@
 # Create tool to search for tracks based on the user's emotion
+
+import sys
+sys.path.append("/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages")
+import requests
+import os
+import json
+import base64
+from typing import List, Dict, Any
+from datetime import datetime, timedelta
+from dotenv import load_dotenv
+from mcp_instance import mcp
+
+# Load environment variables
+load_dotenv()
+
+SPOTIFY_API_BASE = 'https://api.spotify.com/v1'
+SPOTIFY_ACCOUNTS_BASE = 'https://accounts.spotify.com'
+
+def load_tokens() -> Dict[str, str]:
+    access_token = os.getenv('SPOTIFY_ACCESS_TOKEN')
+    refresh_token = os.getenv('SPOTIFY_REFRESH_TOKEN')
+
+    if access_token and refresh_token:
+        return {
+            'access_token': access_token,
+            'refresh_token': refresh_token
+        }
+
+    try:
+        config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+                                   'servers', 'spotify-mcp-server', 'spotify-config.json')
+        with open(config_path, 'r') as f:
+            config = json.load(f)
+            return {
+                'access_token': config['accessToken'],
+                'refresh_token': config['refreshToken']
+            }
+    except:
+        raise Exception("No Spotify tokens found in environment or config file")
+
+tokens = load_tokens()
+token_expiry = datetime.now() + timedelta(hours=1)
+
+def refresh_access_token() -> None:
+    client_id = os.getenv('SPOTIFY_CLIENT_ID')
+    client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+
+    if not client_id or not client_secret:
+        raise Exception("Spotify client credentials not found in environment")
+
+    auth_string = f"{client_id}:{client_secret}"
+    auth_base64 = base64.b64encode(auth_string.encode()).decode()
+
+    headers = {
+        'Authorization': f'Basic {auth_base64}',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    data = {
+        'grant_type': 'refresh_token',
+        'refresh_token': tokens['refresh_token']
+    }
+
+    response = requests.post(f'{SPOTIFY_ACCOUNTS_BASE}/api/token', headers=headers, data=data)
+
+    if not response.ok:
+        raise Exception(f"Failed to refresh token: {response.text}")
+
+    response_data = response.json()
+    tokens['access_token'] = response_data['access_token']
+    global token_expiry
+    token_expiry = datetime.now() + timedelta(seconds=response_data['expires_in'])
+
+def make_spotify_request(method: str, endpoint: str, data: Dict[str, Any] = None) -> Dict[str, Any]:
+    if datetime.now() >= token_expiry:
+        refresh_access_token()
+
+    headers = {
+        'Authorization': f'Bearer {tokens["access_token"]}',
+        'Content-Type': 'application/json'
+    }
+
+    url = f'{SPOTIFY_API_BASE}{endpoint}'
+    response = requests.request(method, url, headers=headers, json=data)
+
+    if not response.ok:
+        error_msg = response.json().get('error', {}).get('message', 'Unknown error')
+        raise Exception(f'Spotify API error: {error_msg}')
+
+    return response.json()
+
+@mcp.tool()
+def search_tracks(query: str, limit: int = 10) -> List[dict]:
+    """
+    Search for tracks on Spotify.
+
+    Args:
+        query: The search query (e.g., artist or track name)
+        limit: Number of results to return (default 10)
+
+    Returns:
+        A list of track dictionaries with name, artist, and URI
+    """
+    try:
+        response = make_spotify_request('GET', f'/search?q={query}&type=track&limit={limit}')
+        tracks = response['tracks']['items']
+
+        return [{
+            'name': track['name'],
+            'artist': track['artists'][0]['name'],
+            'uri': track['uri']
+        } for track in tracks]
+    except Exception as e:
+        return [{'error': f"Failed to search tracks: {str(e)}"}]
