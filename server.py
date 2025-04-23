@@ -9,6 +9,9 @@ from tools.spotify.add_tracks_to_playlist import add_tracks_to_playlist
 # Import search-tracks tool
 from tools.spotify.search_tracks import search_tracks
 
+# Import play-playlist tool
+from tools.spotify.play_playlist import play_playlist
+
 # For Testing (Should be deleted)
 @mcp.tool()
 def add(a: int, b: int) -> int:
