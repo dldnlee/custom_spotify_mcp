@@ -15,8 +15,8 @@ brew install uv
 ### 2. Clone the Repository
 Clone this repository to a directory of your choice:
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/dldnlee/custom_spotify_mcp.git custom_spotify_mcp
+cd custom_spotify_mcp
 ```
 
 ### 3. Initialize the Environment
