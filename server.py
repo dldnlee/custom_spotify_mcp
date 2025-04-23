@@ -1,5 +1,8 @@
 from mcp_instance import mcp
 
+# Import create_playlist tool
+from tools.spotify.create_playlist import create_playlist
+
 
 
 # For Testing (Should be deleted)
