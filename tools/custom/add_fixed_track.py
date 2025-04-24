@@ -1,10 +1,11 @@
 from util.spotify_functions import make_spotify_request
 from mcp_instance import mcp
 
-@mcp.tool()
+# Changed this to a normal function rather than a tool that gets executed by the server
+# Will use within the create_playlist tool to make adding a fixed track seamless
 def add_fixed_track(playlist_id: str) -> str:
     """
-    Add the fixed track ("Birds of a Feather" by Billie Eilish) to a playlist.
+    Add a fixed track to a playlist.
     
     Args:
         playlist_id: The Spotify ID of the playlist to add the track to.

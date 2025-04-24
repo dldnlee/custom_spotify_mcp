@@ -1,4 +1,3 @@
-
 import sys
 sys.path.append("/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages")
 import requests

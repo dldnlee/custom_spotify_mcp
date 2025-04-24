@@ -1,13 +1,19 @@
 import requests
 from mcp_instance import mcp
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 @mcp.tool()
-def get_song_list(search_query: str) -> list[str]:
-    """Search for songs on the internet based on the search query."""
+def search_tracks_online(search_query: str) -> list[str]:
+    """
+    Search tracks based on the user's emotion.
+
+    Args:
+        query: The search query (e.g., artist or track name)
+        limit: Number of results to return (default 10)
+
+    Returns:
+        A list of strings formatted as "Title - Author" for each track found.
+    """
     url = "https://api.search.brave.com/res/v1/web/search"
 
     api_key = os.getenv("BRAVE_API_KEY")
@@ -30,7 +36,10 @@ def get_song_list(search_query: str) -> list[str]:
     song_titles = []
     for result in search_results.get("web", {}).get("results", []):
         title = result.get("title", "")
-        if title:
+        author = result.get("description", "")
+        if title and author:
+            song_titles.append(f"{title} - {author}")
+        elif title:
             song_titles.append(title)
 
     return song_titles if song_titles else ["No songs found."]

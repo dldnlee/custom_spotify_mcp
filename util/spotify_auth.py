@@ -1,6 +1,3 @@
-# Create tool to authenticate with Spotify using the client id and client secret
-# Should generate the refresh token and save it to the .env file
-
 import os
 import base64
 import requests
@@ -140,6 +137,4 @@ def main():
 
 if __name__ == '__main__':
     print("Starting Spotify authentication...")
-    client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
-    print(f"Client secret: {client_secret}")
     main() 
