@@ -22,6 +22,7 @@ def register_handlers(mcp):
         "instructions": [
             "Ask the user about their current mood or what kind of music they would like.",
             "Ask the user how many songs they want in the playlist (max 50).",
+            "Ask the user if they have any specific genre in mind.",
             "Generate a playlist name that fits the mood.",
             "Search for songs matching the mood using Brave",
             "Take the list of songs found and get_track_uris from Spotify",
