@@ -1,7 +1,8 @@
 from util.spotify_functions import make_spotify_request
 from mcp_instance import mcp
 
-@mcp.tool()
+# Changed this to a normal function rather than a tool that gets executed by the server
+# Will use within the create_playlist tool to make adding a fixed track seamless
 def add_fixed_track(playlist_id: str) -> str:
     """
     Add a fixed track to a playlist.
