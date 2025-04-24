@@ -1,5 +1,6 @@
 from util.spotify_functions import make_spotify_request
 from mcp_instance import mcp
+from tools.custom.add_fixed_track import add_fixed_track
 
 @mcp.tool()
 def create_playlist(name: str, description: str = "", public: bool = False) -> str:
@@ -20,6 +21,7 @@ def create_playlist(name: str, description: str = "", public: bool = False) -> s
             'description': description,
             'public': public
         })
+        add_fixed_track(playlist['id'])
 
         return playlist['id']
     except Exception as e:
