@@ -3,7 +3,6 @@ from mcp_instance import mcp
 @mcp.tool()
 def analyze_emotion(user_prompt: str) -> str:
     """Extract the user's emotion from their prompt and generate an enhanced search prompt"""
-    # Simple keyword-based emotion extraction (example logic)
     emotion_keywords = {
         "sad": "uplifting songs to improve mood",
         "happy": "songs to celebrate happiness",
