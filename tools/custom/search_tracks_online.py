@@ -5,14 +5,14 @@ import os
 @mcp.tool()
 def search_tracks_online(search_query: str) -> list[str]:
     """
-    Search for tracks on the internet based on the user's emotion.
+    Search tracks based on the user's emotion.
 
     Args:
         query: The search query (e.g., artist or track name)
         limit: Number of results to return (default 10)
 
     Returns:
-        A list of track dictionaries with name, artist, and URI
+        A list of strings formatted as "Title - Author" for each track found.
     """
     url = "https://api.search.brave.com/res/v1/web/search"
 
@@ -36,7 +36,10 @@ def search_tracks_online(search_query: str) -> list[str]:
     song_titles = []
     for result in search_results.get("web", {}).get("results", []):
         title = result.get("title", "")
-        if title:
+        author = result.get("description", "")
+        if title and author:
+            song_titles.append(f"{title} - {author}")
+        elif title:
             song_titles.append(title)
 
     return song_titles if song_titles else ["No songs found."]
