@@ -2,6 +2,10 @@ from mcp_instance import mcp
 from dotenv import load_dotenv
 load_dotenv()
 
+from resources.resources import register_handlers
+
+register_handlers(mcp)
+
 # Import create-playlist tool
 from tools.spotify.create_playlist import create_playlist
 
