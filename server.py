@@ -2,7 +2,7 @@ from mcp_instance import mcp
 from dotenv import load_dotenv
 load_dotenv()
 
-from resources.resources import register_handlers
+from resources.handlers import register_handlers
 
 register_handlers(mcp)
 
