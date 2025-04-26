@@ -40,7 +40,7 @@ or
 ```bash
 python util/spotify_auth.py
 ```
-To generate the access tokens. Needs to be created every hour
+To generate the access tokens. <ins>Needs to be created every hour</ins>
 
 ### 4. Install MCP Server to Claude
 ```bash
