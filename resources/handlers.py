@@ -14,7 +14,7 @@ def register_handlers(mcp):
         ]
       }
 
-  @mcp.resource("create://playlist")
+  @mcp.resource("playlist://create")
   def create_playlist() -> dict:
     """Guidelines for Claude to create a playlist with user-defined song count."""
     return {
